@@ -1,2 +1,2 @@
 # 16lemoing.github.io
-Personal page
+personal page
