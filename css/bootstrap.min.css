@@ -1469,7 +1469,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
-    margin-top: 21px;
+    margin-top: 5px;
     margin-bottom: 10.5px
 }
 
@@ -5440,22 +5440,79 @@ a.badge:hover, a.badge:focus {
 
 .thumbnail {
     display: block;
-    padding: 4px;
+    padding: 0px;
     margin-bottom: 21px;
     line-height: 1.42857143;
     background-color: #ffffff;
     border: 0;
     -webkit-transition: border .2s ease-in-out;
     -o-transition: border .2s ease-in-out;
-    transition: border .2s ease-in-out
+    transition: border .2s ease-in-out;
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
 
-.thumbnail > img, .thumbnail a > img {
-    margin-left: auto;
-    margin-right: auto
+a.thumbnail span.thumbnail-follow > img {
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none
 }
 
-a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
+a.thumbnail span.thumbnail-follow {
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    pointer-events: none
+}
+
+a.thumbnail span.thumbnail-overlay-open > img {
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    pointer-events: none
+}
+
+a.thumbnail span.thumbnail-overlay-open {
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none
+}
+
+a.thumbnail span.thumbnail-overlay-close > img {
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none
+}
+
+a.thumbnail span.thumbnail-overlay-close {
+    visibility:hidden;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none
+}
+
+a.thumbnail:focus, a.thumbnail.active {
     border-color: #eb6864
 }
 
@@ -7311,4 +7368,3 @@ button.close {
 .panel-primary .panel-title, .panel-success .panel-title, .panel-warning .panel-title, .panel-danger .panel-title, .panel-info .panel-title {
     color: #fff
 }
-

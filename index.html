@@ -47,17 +47,28 @@
     <!-- Aboutme -->
     <!--<div id="aboutme"></div> -->
     <div class="row">
-        <div class="col-xs-6 col-sm-4 col-md-2">
-            <a class="thumbnail">
-                <img src="./img/guillaume.jpg" alt="Guillaume Le Moing" class="img-circle">
+        <div class="col-md-3">
+            <a class="thumbnail" id="face">
+                <img src="./img/thumbnail.png" alt="Guillaume Le Moing" class="img-rounded">
+                <span class="thumbnail-follow">
+                    <img src="./img/thumbnail-follow.png" alt="overlay" id="follow">
+                </span>
+                <span class="thumbnail-overlay-open">
+                    <img src="./img/thumbnail-overlay-open.png" alt="overlay-open" class="img-rounded">
+                </span>
+                <span class="thumbnail-overlay-close" id="overlay-close">
+                    <img src="./img/thumbnail-overlay-close.png" alt="overlay-close" class="img-rounded">
+                </span>
+
             </a>
+
         </div>
 
-        <div class="col-xs-10 col-sm-6 col-md-4">
+        <div class="col-md-9">
             <h1 class="text-info">Guillaume Le Moing</h1>
             <h4 class="text-info">PhD student, Inria</h4>
             <h5>
-                <a href="mailto:guillaume.le-moing.inria@gmail.com" class="text-info" title="e-Mail"><i
+                <a href="mailto:guillaume.le-moing@inria.fr" class="text-info" title="e-Mail"><i
                         class="fa fa-envelope-square fa-2x"></i></a>
                 <a href="https://scholar.google.com/citations?user=rrOyAscAAAAJ" class="text-info"
                    title="Google Scholar"><i class="ai ai-google-scholar-square ai-2x"></i></a>
@@ -66,23 +77,23 @@
                 <a href="https://www.linkedin.com/in/guillaume-le-moing-ab7706142/" class="text-info"
                    title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a>
             </h5>
+            <p align="justify">
+                I am a first-year PhD student in computer vision at <a href="http://www.di.ens.fr/willow">WILLOW</a>, a joint
+                research
+                laboratory between the <a href="http://www.di.ens.fr">Department of Computer Science</a> of <a
+                    href="http://www.ens.fr">&Eacute;cole Normale Sup&eacute;rieure (ENS)</a> and <a
+                    href="http://www.inria.fr/">Inria Paris</a>. My current research is focused on learning robust features for visual tasks, in
+                particular when modeling video data, working under the supervision of <a
+                    href="https://www.di.ens.fr/willow/people_webpages/cordelia/">Cordelia Schmid</a> and <a
+                    href="http://www.di.ens.fr/~ponce/enindex.html">Jean Ponce</a>. I have received a MSc degree in Executive
+                Engineering from <a href="https://www.minesparis.psl.eu/">&Eacute;cole des Mines de Paris</a> and a MSc degree
+                in <a
+                    href="https://www.lamsade.dauphine.fr/wp/iasd/">Artificial Intelligence, Systems and Data</a> from <a
+                    href="https://psl.eu/">PSL Research University</a>.
+            </p>
         </div>
     </div> <!-- end of Aboutme -->
 
-    <p align="justify">
-        I am a first-year PhD student in computer vision at <a href="http://www.di.ens.fr/willow">WILLOW</a>, a joint
-        research
-        laboratory between the <a href="http://www.di.ens.fr">Department of Computer Science</a> of <a
-            href="http://www.ens.fr">&Eacute;cole Normale Sup&eacute;rieure (ENS)</a> and <a
-            href="http://www.inria.fr/">Inria Paris</a>. My current research is focused on learning robust features for visual tasks, in
-        particular when modeling video data, working under the supervision of <a
-            href="https://www.di.ens.fr/willow/people_webpages/cordelia/">Cordelia Schmid</a> and <a
-            href="http://www.di.ens.fr/~ponce/enindex.html">Jean Ponce</a>. I have received a MSc degree in Executive
-        Engineering from <a href="https://www.minesparis.psl.eu/">&Eacute;cole des Mines de Paris</a> and a MSc degree
-        in <a
-            href="https://www.lamsade.dauphine.fr/wp/iasd/">Artificial Intelligence, Systems and Data</a> from <a
-            href="https://psl.eu/">PSL Research University</a>.
-    </p>
     <hr>
 
     <!-- News header-->
@@ -167,11 +178,8 @@
     <div class="row" id="research" style="padding-top:60px; margin-top:-60px;">
         <div class="col-md-12">
             <h2>Research</h2>
-            <!--
-                <p>
-                  See <a href="https://scholar.google.fr/citations?user=ceSzF9YAAAAJ&hl=en">Google Scholar profile</a> for a full list of publications.
-                </p>
-            -->
+
+
             <!-- CVPR'21 -->
             <div class="row">
                 <div class="col-xs-10 col-sm-4 col-md-4">
@@ -184,10 +192,6 @@
                     <strong>Semantic Palette: Guiding Scene Generation with Class Proportions</strong> </br>
                     <u>Guillaume Le Moing</u>, Tuan-Hung Vu, Himalaya Jain, Patrick P&eacute;rez, Matthieu Cord<br>
                     <em>CVPR, </em> 2021.<br>
-                    <!--<a href=""> <button type="button" class="btn btn-primary btn-xs"> pdf </button> </a> -->
-                    <!--                    <a href="handobjectconsist.html">-->
-                    <!--                        <button type="button" class="btn btn-primary btn-xs">project page</button>-->
-                    <!--                    </a>-->
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex6">
                         bibtex
                     </button>
@@ -204,21 +208,16 @@
                     </button>
                     <div id="abstract6" class="collapse">
                         <p style="text-align: justify;">
-                            Despite the recent progress of generative adversarial networks (GANs) at synthesizing
-                            photo-realistic images, producing complex urban scenes remains a challenging problem.
-                            Previous works break down scene generation into two consecutive phases: unconditional
-                            semantic layout synthesis and image synthesis conditioned on layouts. In this work, we
-                            propose to condition layout generation as well for higher semantic control: given a vector
-                            of class proportions, we generate layouts with matching composition. To this end, we
-                            introduce a conditional framework with novel architecture designs and learning objectives,
-                            which effectively accommodates class proportions to guide the scene generation process. The
-                            proposed architecture also allows partial layout editing with interesting applications.
-                            Thanks to the semantic control, we can produce layouts close to the real distribution,
-                            helping enhance the whole scene generation process. On different metrics and urban scene
-                            benchmarks, our models outperform existing baselines. Moreover, we demonstrate the merit of
-                            our approach for data augmentation: semantic segmentors trained on real layout/image pairs
-                            along with additional ones generated by our approach outperform models only trained on real
-                            pairs.
+                            Despite the recent progress of generative adversarial networks (GANs) at synthesizing photo-realistic images, producing complex
+                            urban scenes remains a challenging problem. Previous works break down scene generation into two consecutive phases: unconditional
+                            semantic layout synthesis and image synthesis conditioned on layouts. In this work, we propose to condition layout generation as
+                            well for higher semantic control: given a vector of class proportions, we generate layouts with matching composition. To this end,
+                            we introduce a conditional framework with novel architecture designs and learning objectives, which effectively accommodates class
+                            proportions to guide the scene generation process. The proposed architecture also allows partial layout editing with interesting
+                            applications. Thanks to the semantic control, we can produce layouts close to the real distribution, helping enhance the whole scene
+                            generation process. On different metrics and urban scene benchmarks, our models outperform existing baselines. Moreover, we
+                            demonstrate the merit of our approach for data augmentation: semantic segmenters trained on real layout-image pairs along with
+                            additional ones generated by our approach outperform models only trained on real pairs.
                         </p>
                     </div>
                 </div>
@@ -310,5 +309,63 @@
         ga('send', 'pageview');
 
     </script>
+
+    <script>
+    $(document).mousemove(function(e) {
+        var face = document.querySelector("#face").getBoundingClientRect();
+        var follow = document.querySelector("#follow").getBoundingClientRect();
+        var center_x = face.left + (0.5 + 0.14) * face.width;
+        var center_y = face.top + (0.5 - 0.04) * face.height;
+        var x = e.pageX - center_x + 0.2 * face.width; // Math.max(Math.min(0.6 * face.width / 2, e.pageX - center_x), - 0.6 * face.width / 2);
+        var y = e.pageY - center_y + 0.5 * face.height; // Math.max(Math.min(0.6 * face.height / 2, e.pageY - center_y), - 0.6 * face.height / 2);
+        x = 0.03 * x;
+        y = 0.01 * y;
+        x = (follow.left - face.left) + (x - (follow.left - face.left)) / 2;
+        y = (follow.top - face.top) + (y - (follow.top - face.top)) / 2;
+        var dx = x - (follow.left - face.left);
+        var dy = y - (follow.top - face.top);
+        var n = Math.sqrt(dx ** 2 + dy ** 2);
+        var m = 1 + 64 * n / face.width
+        setTimeout(function(){
+            if($(document.getElementById("face")).is(':hover')) {
+                $("#follow").css({
+                    left: (follow.left - face.left) + dx / m,
+                    top: (follow.top - face.top) + dy / m
+                });
+            } else {
+                $("#follow").css({
+                    left: (follow.left - face.left) / m,
+                    top: (follow.top - face.top) / m
+                });
+            }
+        }, 20);
+    });
+    </script>
+
+    <script>
+    function blinkImg()
+    {
+        var t, face = document.getElementById("face");
+        var v, ele = document.getElementById("overlay-close");
+        if($(face).is(':hover')) {
+            if (ele.style.visibility == 'visible') {
+                v = 'hidden';
+                t = 3000;
+            }
+            else {
+                v = 'visible';
+                t = 100;
+            }
+        }
+        else {
+            v = 'hidden';
+            t = 3000;
+        }
+        ele.style.visibility = v;
+        setTimeout('blinkImg()', t);
+    }
+    setTimeout('blinkImg()', 3000);
+    </script>
+
 </body>
 </html>
