@@ -51,10 +51,10 @@
             <a class="thumbnail" id="face">
                 <img src="./img/thumbnail.png" alt="Guillaume Le Moing" class="img-rounded">
                 <span class="thumbnail-overlay-open">
-                    <img src="./img/thumbnail-overlay-open.png" alt="overlay-open" class="img-rounded">
+                    <img src="./img/thumbnail-overlay-open.png" alt="overlay-open" class="img-rounded" id="open">
                 </span>
                 <span class="thumbnail-follow">
-                    <img src="./img/thumbnail-follow.png" alt="overlay" id="follow">
+                    <img src="./img/thumbnail-follow.png" alt="overlay-follow" id="follow">
                 </span>
                 <span class="thumbnail-overlay-close" id="overlay-close">
                     <img src="./img/thumbnail-overlay-close.png" alt="overlay-close">
@@ -308,6 +308,39 @@
         ga('create', 'UA-192559955-1', 'auto');
         ga('send', 'pageview');
 
+    </script>
+
+    <script>
+        function isImageOk(img) {
+            // During the onload event, IE correctly identifies any images that
+            // weren’t downloaded as not complete. Others should too. Gecko-based
+            // browsers act like NS4 in that they report this incorrectly.
+            if (!img.complete) {
+                return false;
+            }
+
+            // However, they do have two very useful properties: naturalWidth and
+            // naturalHeight. These give the true size of the image. If it failed
+            // to load, either of these should be zero.
+            if (img.naturalWidth === 0) {
+                return false;
+            }
+
+            // No other way of checking: assume it’s ok.
+            return true;
+        }
+
+        function showFace()
+        {
+            if(isImageOk(document.getElementById("open"))) {
+                $("#face").css({
+                    opacity: 1
+                });
+            } else {
+                setTimeout('showFace()', 100);
+            }
+        }
+        setTimeout('showFace()', 100);
     </script>
 
     <script>
