@@ -344,69 +344,113 @@
     </script>
 
     <script>
-    $(document).on("mousemove touchmove", function(e) {
-        var pageX, pageY;
-        if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
-            var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-            pageX = touch.pageX;
-            pageY = touch.pageY;
-        } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
-            pageX = e.pageX;
-            pageY = e.pageY;
-        }
-        var face = document.querySelector("#face").getBoundingClientRect();
-        var follow = document.querySelector("#follow").getBoundingClientRect();
-        var center_x = face.left + (0.5 + 0.14) * face.width;
-        var center_y = face.top + (0.5 - 0.04) * face.height;
-        var x = pageX - center_x + 0.2 * face.width; // Math.max(Math.min(0.6 * face.width / 2, e.pageX - center_x), - 0.6 * face.width / 2);
-        var y = pageY - center_y + 0.5 * face.height; // Math.max(Math.min(0.6 * face.height / 2, e.pageY - center_y), - 0.6 * face.height / 2);
-        x = 0.03 * x;
-        y = 0.01 * y;
-        x = (follow.left - face.left) + (x - (follow.left - face.left)) / 2;
-        y = (follow.top - face.top) + (y - (follow.top - face.top)) / 2;
-        var dx = x - (follow.left - face.left);
-        var dy = y - (follow.top - face.top);
-        var n = Math.sqrt(dx ** 2 + dy ** 2);
-        var m = 1 + 64 * n / face.width
-        setTimeout(function(){
-            if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
-                $("#follow").css({
-                    left: (follow.left - face.left) + dx / m,
-                    top: (follow.top - face.top) + dy / m
-                });
+        $(document).on("mousedown mouseup focus blur keydown change dblclick mousemove mouseover mouseout mousewheel keydown keyup keypress textInput touchstart touchmove touchend touchcancel resize scroll zoom select change submit reset", function(e) {
+            var pageX, pageY;
+            var face = document.querySelector("#face").getBoundingClientRect();
+            var follow = document.querySelector("#follow").getBoundingClientRect();
+            var center_x = face.left + (0.5 + 0.14) * face.width;
+            var center_y = face.top + (0.5 - 0.04) * face.height;
+            if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+                var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+                pageX = touch.pageX;
+                pageY = touch.pageY;
+            } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+                pageX = e.pageX;
+                pageY = e.pageY;
             } else {
-                $("#follow").css({
-                    left: (follow.left - face.left) / m,
-                    top: (follow.top - face.top) / m
-                });
+                pageX = center_x;
+                pageY = center_y;
             }
-        }, 20);
-    });
+            var x = pageX - center_x + 0.2 * face.width;
+            var y = pageY - center_y + 0.5 * face.height;
+            x = 0.03 * x;
+            y = 0.01 * y;
+            x = (follow.left - face.left) + (x - (follow.left - face.left)) / 2;
+            y = (follow.top - face.top) + (y - (follow.top - face.top)) / 2;
+            var dx = x - (follow.left - face.left);
+            var dy = y - (follow.top - face.top);
+            var n = Math.sqrt(dx ** 2 + dy ** 2);
+            var m = 1 + 64 * n / face.width
+            setTimeout(function(){
+                if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
+                    $("#follow").css({
+                        left: (follow.left - face.left) + dx / m,
+                        top: (follow.top - face.top) + dy / m
+                    });
+                } else {
+                    $("#follow").css({
+                        left: (follow.left - face.left) / m,
+                        top: (follow.top - face.top) / m
+                    });
+                }
+            }, 20);
+        });
     </script>
 
+    <!-- </script>-->
+    <!--    $(document).on("mousemove touchmove", function(e) {-->
+    <!--        var pageX, pageY;-->
+    <!--        if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){-->
+    <!--            var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];-->
+    <!--            pageX = touch.pageX;-->
+    <!--            pageY = touch.pageY;-->
+    <!--        } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {-->
+    <!--            pageX = e.pageX;-->
+    <!--            pageY = e.pageY;-->
+    <!--        }-->
+    <!--        var face = document.querySelector("#face").getBoundingClientRect();-->
+    <!--        var follow = document.querySelector("#follow").getBoundingClientRect();-->
+    <!--        var center_x = face.left + (0.5 + 0.14) * face.width;-->
+    <!--        var center_y = face.top + (0.5 - 0.04) * face.height;-->
+    <!--        var x = pageX - center_x + 0.2 * face.width;-->
+    <!--        var y = pageY - center_y + 0.5 * face.height;-->
+    <!--        x = 0.03 * x;-->
+    <!--        y = 0.01 * y;-->
+    <!--        x = (follow.left - face.left) + (x - (follow.left - face.left)) / 2;-->
+    <!--        y = (follow.top - face.top) + (y - (follow.top - face.top)) / 2;-->
+    <!--        var dx = x - (follow.left - face.left);-->
+    <!--        var dy = y - (follow.top - face.top);-->
+    <!--        var n = Math.sqrt(dx ** 2 + dy ** 2);-->
+    <!--        var m = 1 + 64 * n / face.width-->
+    <!--        setTimeout(function(){-->
+    <!--            if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {-->
+    <!--                $("#follow").css({-->
+    <!--                    left: (follow.left - face.left) + dx / m,-->
+    <!--                    top: (follow.top - face.top) + dy / m-->
+    <!--                });-->
+    <!--            } else {-->
+    <!--                $("#follow").css({-->
+    <!--                    left: (follow.left - face.left) / m,-->
+    <!--                    top: (follow.top - face.top) / m-->
+    <!--                });-->
+    <!--            }-->
+    <!--        }, 20);-->
+    <!--    });-->
+    <!--</script>-->
+
     <script>
-    function blinkImg()
-    {
-        var t;
-        var v, ele = document.getElementById("overlay-close");
-        if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
-            if (ele.style.visibility == 'visible') {
+        function blinkImg()
+        {
+            var t;
+            var v, ele = document.getElementById("overlay-close");
+            if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
+                if (ele.style.visibility == 'visible') {
+                    v = 'hidden';
+                    t = 3000;
+                }
+                else {
+                    v = 'visible';
+                    t = 100;
+                }
+            }
+            else {
                 v = 'hidden';
                 t = 3000;
             }
-            else {
-                v = 'visible';
-                t = 100;
-            }
+            ele.style.visibility = v;
+            setTimeout('blinkImg()', t);
         }
-        else {
-            v = 'hidden';
-            t = 3000;
-        }
-        ele.style.visibility = v;
-        setTimeout('blinkImg()', t);
-    }
-    setTimeout('blinkImg()', 3000);
+        setTimeout('blinkImg()', 3000);
     </script>
 
 </body>
