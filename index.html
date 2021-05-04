@@ -344,13 +344,22 @@
     </script>
 
     <script>
-    $(document).mousemove(function(e) {
+    $(document).on("mousemove touch", function(e) {
+        var pageX, pageY;
+        if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+            var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+            pageX = touch.pageX;
+            pageY = touch.pageY;
+        } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+            pageX = e.pageX;
+            pageY = e.pageY;
+        }
         var face = document.querySelector("#face").getBoundingClientRect();
         var follow = document.querySelector("#follow").getBoundingClientRect();
         var center_x = face.left + (0.5 + 0.14) * face.width;
         var center_y = face.top + (0.5 - 0.04) * face.height;
-        var x = e.pageX - center_x + 0.2 * face.width; // Math.max(Math.min(0.6 * face.width / 2, e.pageX - center_x), - 0.6 * face.width / 2);
-        var y = e.pageY - center_y + 0.5 * face.height; // Math.max(Math.min(0.6 * face.height / 2, e.pageY - center_y), - 0.6 * face.height / 2);
+        var x = pageX - center_x + 0.2 * face.width; // Math.max(Math.min(0.6 * face.width / 2, e.pageX - center_x), - 0.6 * face.width / 2);
+        var y = pageY - center_y + 0.5 * face.height; // Math.max(Math.min(0.6 * face.height / 2, e.pageY - center_y), - 0.6 * face.height / 2);
         x = 0.03 * x;
         y = 0.01 * y;
         x = (follow.left - face.left) + (x - (follow.left - face.left)) / 2;
