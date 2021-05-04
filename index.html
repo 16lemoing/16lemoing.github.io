@@ -344,7 +344,7 @@
     </script>
 
     <script>
-    $(document).on("mousemove touch", function(e) {
+    $(document).on("mousemove touchmove", function(e) {
         var pageX, pageY;
         if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
             var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
