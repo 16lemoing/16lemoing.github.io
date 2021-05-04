@@ -360,7 +360,7 @@
         var n = Math.sqrt(dx ** 2 + dy ** 2);
         var m = 1 + 64 * n / face.width
         setTimeout(function(){
-            if($(document.getElementById("face")).is(':hover')) {
+            if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
                 $("#follow").css({
                     left: (follow.left - face.left) + dx / m,
                     top: (follow.top - face.top) + dy / m
@@ -378,9 +378,9 @@
     <script>
     function blinkImg()
     {
-        var t, face = document.getElementById("face");
+        var t;
         var v, ele = document.getElementById("overlay-close");
-        if($(face).is(':hover')) {
+        if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
             if (ele.style.visibility == 'visible') {
                 v = 'hidden';
                 t = 3000;
