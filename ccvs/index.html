@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CCVS: Context-aware Controllable Video Synthesis">
+    <meta name="author" content="WILLOW team">
+    <title>CCVS: Context-aware Controllable Video Synthesis</title>
+
+    <link rel='icon' href='../favicon.ico' type='image/x-icon'>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css"/>
+</head>
+
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar navbar-default  navbar-fixed-top bg-info">
+    <div class="container">
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="height:80px;"></div>
+<div style="height:40px;"></div>
+
+<!-- CONTENTS -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1><p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">CCVS: Context-aware Controllable Video Synthesis</p></h1>
+        </div>
+    </div>
+
+    <div class="text-center" style="font-size: 1.5em; margin-bottom: 60px;">
+        <div class="col-md-12">
+            <a href="https://16lemoing.github.io" style="margin-right: 20px;">Guillaume Le Moing</a>
+            <a href="https://www.di.ens.fr/~ponce" style="margin-right: 20px;">Jean Ponce</a>
+            <a href="https://thoth.inrialpes.fr/~schmid">Cordelia Schmid</a>
+        </div>
+    </div>
+
+    <img style='width: 80%; margin-left: auto; margin-right: auto; object-fit: contain; display: block;' src="../content/media/ccvs/slider/slide1.JPG" id="framework" alt="framework">
+
+    <div style='width: 10%; float:left;'>
+        <button style='margin-left: 75%;' type="button" class="btn btn-success btn-xs" onclick='buttonPlayPress()'>
+            <i class="fa fa-play" id="buttonPlay"></i>
+        </button>
+    </div>
+    <div class="slidecontainer" style='width: 80%; float:left; margin-top: 3px;'>
+        <input type="range" min="1" max="25" value="1" class="slider" id="frameworkRange">
+    </div>
+    <div style="clear: both;"></div>
+
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Abstract</h3>
+            <p style="text-align: justify;">
+                This presentation introduces a self-supervised learning approach to the synthesis of new video clips from old ones, with several new key
+                elements for improved spatial resolution and realism: It conditions the synthesis process on contextual information for temporal continuity and
+                ancillary information for fine control. The prediction model is doubly autoregressive, in the latent space of an autoencoder for forecasting,
+                and in image space for updating contextual information, which is also used to enforce spatio-temporal consistency through a learnable optical
+                flow module. Adversarial training of the autoencoder in the appearance and temporal domains is used to further improve the realism of its
+                output. A quantizer inserted between the encoder and the transformer in charge of forecasting future frames in latent space (and its inverse
+                inserted between the transformer and the decoder) adds even more flexibility by affording simple mechanisms for handling multimodal ancillary
+                information for controlling the synthesis process (eg, a few sample frames, an audio track, a trajectory in image space) and taking into account
+                the intrinsically uncertain nature of the future by allowing multiple predictions. Experiments with an implementation of the proposed approach
+                give very good qualitative and quantitative results on multiple tasks and standard benchmarks.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Links</h3>
+            <div class="col-md-6">
+                <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;' src="../content/media/ccvs/arxiv21_pdf.png"
+                     alt="pdf">
+<!--                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://arxiv.org/abs/">ArXiv preprint</a></p>-->
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">Coming soon</p>
+            </div>
+            <div class="col-md-6">
+                <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;' src="../content/media/code.png" alt="code">
+<!--                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://github.com/16lemoing/ccvs">Code</a></p>-->
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">Coming soon</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Citation</h3>
+            <pre><tt>@article{lemoing2021ccvs,
+  title &nbsp&nbsp= {CCVS: Context-aware Controllable Video Synthesis},
+  author  = {Guillaume Le Moing and Jean Ponce and Cordelia Schmid},
+  journal = {arXiv preprint},
+  year &nbsp&nbsp&nbsp= {2021}
+}</tt></pre>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Results</h3>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dataset1">
+                <h4 style="text-align:center">BAIR Robot Pushing (256 × 256)</h4>
+            </button>
+
+            <div id="dataset1" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Future video prediction</h4>
+                    <p style="font-style: italic;">16-frame video with the start frame taken from a real video</p>
+                    <p style="margin-bottom:0px;">Real start frame</p>
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_0.png" alt="input 0">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_1.png" alt="input 1">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_2.png" alt="input 2">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_3.png" alt="input 3">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_4.png" alt="input 4">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_5.png" alt="input 5">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_6.png" alt="input 6">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_pred/vid_7.png" alt="input 7">
+                    <p style="margin-top:10px; margin-bottom:0px;">Synthetic video</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_pred/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Point-to-point video synthesis</h4>
+                    <p style="font-style: italic;">16-frame video with the start & end frames taken from a real video</p>
+                    <p style="margin-bottom:0px;">Real start frame</p>
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_0a.png" alt="input 0">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_1a.png" alt="input 1">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_2a.png" alt="input 2">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_3a.png" alt="input 3">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_4a.png" alt="input 4">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_5a.png" alt="input 5">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_6a.png" alt="input 6">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_7a.png" alt="input 7">
+                    <p style="margin-top:10px; margin-bottom:0px;">Synthetic video</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_p2p/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p style="margin-bottom:0px;">Real end frame</p>
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_0b.png" alt="input 0">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_1b.png" alt="input 1">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_2b.png" alt="input 2">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_3b.png" alt="input 3">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_4b.png" alt="input 4">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_5b.png" alt="input 5">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_6b.png" alt="input 6">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_p2p/vid_7b.png" alt="input 7">
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">State-conditioned video synthesis</h4>
+                    <p style="font-style: italic;">16-frame video with the start frame & robotic arm trajectory taken from a real video</p>
+                    <p style="margin-bottom:0px;">Real start frame</p>
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_0.png" alt="input 0">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_1.png" alt="input 1">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_2.png" alt="input 2">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_3.png" alt="input 3">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_4.png" alt="input 4">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_5.png" alt="input 5">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_6.png" alt="input 6">
+                    <img style='width: 11.75%; object-fit: contain;' src="../content/media/ccvs/mp4/bair_state/vid_7.png" alt="input 7">
+                    <p style="margin-top:10px; margin-bottom:0px;">Synthetic video + target real trajectory (white cross, best viewed by playing individual
+                        videos
+                        in fullscreen mode)</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_state/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Unconditional video synthesis</h4>
+                    <p style="font-style: italic;">16-frame video using start token to launch the synthesis process</p>
+                    <p style="margin-top:10px; margin-bottom:0px;">Synthetic video</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_unc/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <p style="font-style: italic; margin-top:10px;">16-frame video using StyleGAN2 to synthesize the start frame</p>
+                    <p style="margin-top:10px; margin-bottom:0px;">Synthetic video</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/bair_style/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dataset2">
+                <h4 style="text-align:center">Kinetic-600 (64 × 64)</h4>
+            </button>
+
+            <div id="dataset2" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Future video prediction</h4>
+                    <p style="font-style: italic;">16-frame video with 5 priming frames taken from a real video</p>
+
+                    <p style="margin-bottom:0px;">Synthetic video showing sport motion</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <p style="margin-bottom:0px;">Synthetic video showing body motion</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_9.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_10.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_11.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_12.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_13.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_14.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_15.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <p style="margin-bottom:0px;">Synthetic video showing hand motion</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_16.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_17.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_18.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_19.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_20.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_21.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_22.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_23.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <p style="margin-bottom:0px;">Synthetic video showing camera motion</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_24.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_25.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_26.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_27.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_28.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_29.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_30.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/kinetics/vid_31.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/drive/folders/1drEvYT3JV7L5ZjK51j6qpTpjhEIdRnpQ?usp=sharing">
+                        <button type="button" class="btn btn-default btn-xs">100 more random samples</button>
+                    </a>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dataset3">
+                <h4 style="text-align:center">UCF-101 (256 × 256)</h4>
+            </button>
+
+            <div id="dataset3" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Future video prediction</h4>
+                    <p style="font-style: italic;">16-frame video with the start frame taken from a real video</p>
+
+                    <p style="margin-bottom:0px;">Synthetic video</p>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_9.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_10.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_11.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_12.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_13.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_14.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/ucf101/vid_15.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/drive/folders/132G2RgKdAa10d4EZc3ULzhavL7ww_Fgv?usp=sharing">
+                        <button type="button" class="btn btn-default btn-xs">100 more random samples</button>
+                    </a>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dataset4">
+                <h4 style="text-align:center">Audioset-Drum (128 × 230)</h4>
+            </button>
+
+            <div id="dataset4" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Sound-conditioned video synthesis</h4>
+                    <p style="font-style: italic;">90-frame video with 15 priming frames & corresponding audio track for all timesteps taken from a real video</p>
+                    <p style="margin-top:10px; margin-bottom:0px;">Pair of real video (left) & synthetic one (right) with the original sound added on top</p>
+                    <video controls style='width: 32%;' preload="none" poster="../content/media/ccvs/mp4/audioset/vid_0.png">
+                        <source src="../content/media/ccvs/mp4/audioset/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video controls style='width: 32%;' preload="none" poster="../content/media/ccvs/mp4/audioset/vid_1.png">
+                        <source src="../content/media/ccvs/mp4/audioset/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video controls style='width: 32%;' preload="none" poster="../content/media/ccvs/mp4/audioset/vid_2.png">
+                        <source src="../content/media/ccvs/mp4/audioset/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video controls style='width: 32%;' preload="none" poster="../content/media/ccvs/mp4/audioset/vid_3.png">
+                        <source src="../content/media/ccvs/mp4/audioset/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video controls style='width: 32%;' preload="none" poster="../content/media/ccvs/mp4/audioset/vid_4.png">
+                        <source src="../content/media/ccvs/mp4/audioset/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video controls style='width: 32%;' preload="none" poster="../content/media/ccvs/mp4/audioset/vid_5.png">
+                        <source src="../content/media/ccvs/mp4/audioset/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dataset5">
+                <h4 style="text-align:center">Cityscapes (256 × 512)</h4>
+            </button>
+
+            <div id="dataset5" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Layout-conditioned video synthesis</h4>
+                    <p style="font-style: italic;">30-frame video with 3 priming frames & corresponding semantic layouts for all timesteps taken from a real
+                        video</p>
+                    <p style="margin-top:10px; margin-bottom:0px;">Combination of real video (left), real layout (middle) & synthetic video (right)</p>
+                    <video muted controls style='width: 49%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/cityscapes/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 49%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/cityscapes/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 49%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/cityscapes/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 49%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/cityscapes/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 49%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/cityscapes/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 49%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/cityscapes/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dataset6">
+                <h4 style="text-align:center">Weizmann (128 × 128)</h4>
+            </button>
+
+            <div id="dataset6" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Class-conditioned video synthesis</h4>
+                    <p style="font-style: italic;">64-frame video corresponding to a given action label</p>
+                    <div style="margin-bottom:0px; width: 11.75%; float: left;">Action label</div>
+                    <div style="margin-bottom:0px; width: 80%; float: left;">Synthetic video</div>
+
+                    <div class="text-box" style="margin-bottom:0px;">bend</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/bend/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">jack</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jack/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">jump</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/jump/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">pjump</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/pjump/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">run</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/run/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">side</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/side/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">skip</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/skip/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">wave1</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave1/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">wave2</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/wave2/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div class="text-box" style="margin-bottom:0px;">walk</div>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_0.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video muted controls style='width: 11.75%;' autoplay loop playsinline>
+                        <source src="../content/media/ccvs/mp4/weizmann/walk/vid_6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="margin-top:10px;">
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Acknowledgments</h3>
+            <p style="text-align: justify;">
+                This work was granted access to the HPC resources of IDRIS under the allocation 2020-AD011012227 made by GENCI. It was funded in part by
+                the French government under management of Agence Nationale de la Recherche as part of the "Investissements d’avenir" program, reference
+                ANR-19-P3IA-0001 (PRAIRIE 3IA Institute). JP was supported in part by the Louis Vuitton/ENS chair in artificial intelligence and the Inria/NYU
+                collaboration.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Copyright Notice</h3>
+            <p style="text-align: justify;">
+                The documents contained in these directories are included by the contributing authors as a means to ensure timely dissemination of scholarly and
+                technical work on a non-commercial basis. Copyright and all rights therein are maintained by the authors or by other copyright holders,
+                notwithstanding that they have offered their works here electronically. It is understood that all persons copying this information will adhere
+                to the terms and constraints invoked by each author's copyright.
+            </p>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="container">
+        <footer>
+            <p align="right"><small>Copyright © Guillaume Le Moing &nbsp;/&nbsp; Last update: July 2021</small></p>
+        </footer>
+        <div style="height:10px;"></div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jq/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/docs.min.js"></script>
+
+    <script>
+        var slider = document.getElementById("frameworkRange");
+
+        function updateSlide (value) {
+            document.getElementById("framework").setAttribute("src", "../content/media/ccvs/slider/slide" + value + ".JPG");
+        }
+
+        slider.oninput = function () {
+            updateSlide(slider.value);
+        }
+    </script>
+
+    <script>
+        var state = 'pause';
+        var slider = document.getElementById("frameworkRange");
+        var buttonPlay = document.getElementById("buttonPlay");
+
+        function incrementRange() {
+           if (state == 'play') {
+               if (slider.value < 25) {
+                   slider.value++;
+                   updateSlide(slider.value);
+                   setTimeout('incrementRange()', 4000);
+               } else {
+                   slider.value = 1;
+                   state = 'pause';
+                   buttonPlay.setAttribute("class", "fa fa-play");
+                   updateSlide(slider.value);
+                   setTimeout('incrementRange()', 100);
+               }
+           } else {
+               setTimeout('incrementRange()', 100);
+           }
+        }
+
+        function buttonPlayPress() {
+            if (state == 'play') {
+                state = 'pause';
+                buttonPlay.setAttribute("class", "fa fa-play");
+            } else {
+                state = 'play';
+                buttonPlay.setAttribute("class", "fa fa-pause");
+            }
+        }
+        setTimeout('incrementRange()', 100);
+    </script>
+
+</div>
+
+
+</body>
+</html>

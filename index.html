@@ -111,9 +111,9 @@
             <span class="label label-2021">03 / 2021</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            Our paper <a href="">Semantic Palette: Guiding Scene Generation with Class
+            Our paper <a href="https://arxiv.org/abs/2106.01629">Semantic Palette: Guiding Scene Generation with Class
             Proportions</a> has been accepted to <a
-                href="http://cvpr2021.thecvf.com/">CVPR'21</a> (preprint available soon)!
+                href="http://cvpr2021.thecvf.com/">CVPR'21</a>!
 
         </div>
     </div>
@@ -125,7 +125,7 @@
             <span class="label label-2021">01 / 2021</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            Our paper <a href="https://arxiv.org/abs/2012.05533/">Data-Efficient Framework for Real-world Multiple Sound
+            Our paper <a href="https://arxiv.org/abs/2012.05533">Data-Efficient Framework for Real-world Multiple Sound
             Source 2D Localization</a> has been accepted to <a
                 href="https://2021.ieeeicassp.org/">ICASSP'21</a>!
         </div>
@@ -180,6 +180,54 @@
             <h2>Research</h2>
 
 
+            <!-- arXiv'21 -->
+            <div class="row">
+                <div class="col-xs-10 col-sm-4 col-md-4">
+                    <a class="thumbnail">
+                        <img src="./content/arxiv21_miniature.png"
+                             alt="CCVS: Context-aware Controllable Video Synthesis">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <strong>CCVS: Context-aware Controllable Video Synthesis</strong> </br>
+                    <u>Guillaume Le Moing</u>, Jean Ponce, Cordelia Schmid<br>
+                    <em>arXiv preprint, </em> 2021.<br>
+                    <a href="https://arxiv.org/abs/"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex3">
+                        bibtex
+                    </button>
+                    <div id="bibtex3" class="collapse">
+	  <pre><tt>@article{lemoing2021ccvs,
+  title &nbsp&nbsp= {CCVS: Context-aware Controllable Video Synthesis},
+  author  = {Guillaume Le Moing and Jean Ponce and Cordelia Schmid},
+  journal = {arXiv preprint},
+  year &nbsp&nbsp&nbsp= {2021}
+}</tt></pre>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse"
+                            data-target="#abstract6">abstract
+                    </button>
+                    <div id="abstract6" class="collapse">
+                        <p style="text-align: justify;">
+                            This presentation introduces a self-supervised learning approach to the synthesis of new video clips from old ones, with several new
+                            key elements for improved spatial resolution and realism: It conditions the synthesis process on contextual information for temporal
+                            continuity and ancillary information for fine control. The prediction model is doubly autoregressive, in the latent space of an
+                            autoencoder for forecasting, and in image space for updating contextual information, which is also used to enforce spatio-temporal
+                            consistency through a learnable optical flow module. Adversarial training of the autoencoder in the appearance and temporal domains
+                            is used to further improve the realism of its output. A quantizer inserted between the encoder and the transformer in charge of
+                            forecasting future frames in latent space (and its inverse inserted between the transformer and the decoder) adds even more
+                            flexibility by affording simple mechanisms for handling multimodal ancillary information for controlling the synthesis process
+                            (eg, a few sample frames, an audio track, a trajectory in image space) and taking into account the intrinsically uncertain nature of
+                            the future by allowing multiple predictions. Experiments with an implementation of the proposed approach give very good qualitative
+                            and quantitative results on multiple tasks and standard benchmarks.
+                        </p>
+                    </div>
+                    <a href="ccvs/index.html"><button type="button" class="btn btn-primary btn-xs">project page</button></a>
+                </div>
+            </div>
+            <!-- end of arXiv'21 -->
+
+
             <!-- CVPR'21 -->
             <div class="row">
                 <div class="col-xs-10 col-sm-4 col-md-4">
@@ -190,16 +238,16 @@
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8">
                     <strong>Semantic Palette: Guiding Scene Generation with Class Proportions</strong> </br>
-                    <u>Guillaume Le Moing</u>, Tuan-Hung Vu, Himalaya Jain, Patrick P&eacute;rez, Matthieu Cord<br>
+                    <u>Guillaume Le Moing</u>, Tuan-Hung Vu, Himalaya Jain, Patrick Pérez, Matthieu Cord<br>
                     <em>CVPR, </em> 2021.<br>
                     <a href="https://arxiv.org/abs/2106.01629"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex6">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex2">
                         bibtex
                     </button>
-                    <div id="bibtex6" class="collapse">
+                    <div id="bibtex2" class="collapse">
 	  <pre><tt>@inproceedings{lemoing2021palette,
   title &nbsp&nbsp&nbsp&nbsp= {Semantic Palette: Guiding Scene Generation with Class Proportions},
-  author &nbsp&nbsp = {Guillaume Le Moing and Tuan-Hung Vu and Himalaya Jain and Patrick P&eacute;rez and Matthieu Cord},
+  author &nbsp&nbsp = {Guillaume Le Moing and Tuan-Hung Vu and Himalaya Jain and Patrick P{\'e}rez and Matthieu Cord},
   booktitle = {CVPR},
   year &nbsp&nbsp&nbsp&nbsp&nbsp= {2021}
 }</tt></pre>
@@ -221,7 +269,7 @@
                             additional ones generated by our approach outperform models only trained on real pairs.
                         </p>
                     </div>
-                    <a href="https://valeoai.github.io/blog/publications/semanticpalette/"><button type="button" class="btn btn-primary btn-xs">project page</button></a>
+                    <a href="https://valeoai.github.io/blog/publications/semanticpalette"><button type="button" class="btn btn-primary btn-xs">project page</button></a>
                     <a href="https://www.youtube.com/watch?v=ejkbaJD4Emk"><button type="button" class="btn btn-primary btn-xs">video</button></a>
                     <a href="content/cvpr21_poster.pdf"><button type="button" class="btn btn-primary btn-xs">poster</button></a>
                 </div>
@@ -243,10 +291,10 @@
                     Vongkulbhisal, Asim Munawar, Ryuki Tachibana<br>
                     <em>ICASSP, </em> 2021.<br>
                     <a href="https://arxiv.org/abs/2012.05533"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex5">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex1">
                         bibtex
                     </button>
-                    <div id="bibtex5" class="collapse">
+                    <div id="bibtex1" class="collapse">
                   <pre><tt>@inproceedings{lemoing2021ssl,
   title &nbsp&nbsp&nbsp&nbsp= {Data-Efficient Framework for Real-world Multiple Sound Source 2D Localization},
   author &nbsp&nbsp = {Guillaume Le Moing and Phongtharin Vinayavekhin and Don Joven Agravante and Tadanobu Inoue and Jayakorn Vongkulbhisal and Asim Munawar and Ryuki Tachibana},
@@ -273,6 +321,8 @@
                             microphone array layouts while generalizing well to unseen layouts during inference.
                         </div>
                     </div>
+                    <a href="https://www.youtube.com/watch?v=TYntjL-pwSU"><button type="button" class="btn btn-primary btn-xs">video</button></a>
+                    <a href="content/icassp21_poster.pdf"><button type="button" class="btn btn-primary btn-xs">poster</button></a>
                 </div>
             </div>
             <!-- end of ICASSP'21 -->
@@ -285,7 +335,7 @@
 
     <div class="container">
         <footer>
-            <p align="right"><small>Copyright © Guillaume Le Moing &nbsp;/&nbsp; Last update:April 2021</small></p>
+            <p align="right"><small>Copyright © Guillaume Le Moing &nbsp;/&nbsp; Last update: July 2021</small></p>
         </footer>
         <div style="height:10px;"></div>
     </div>
@@ -415,6 +465,6 @@
         }
         setTimeout('blinkImg()', 3000);
     </script>
-
+</div>
 </body>
 </html>
