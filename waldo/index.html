@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction">
+    <meta name="author" content="WILLOW team">
+    <title>WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction</title>
+
+    <link rel='icon' href='../favicon.ico' type='image/x-icon'>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css"/>
+</head>
+
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar navbar-default  navbar-fixed-top bg-info">
+    <div class="container">
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="../">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="height:80px;"></div>
+<div style="height:40px;"></div>
+
+<!-- CONTENTS -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1><p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction</p></h1>
+        </div>
+    </div>
+
+    <div class="text-center" style="font-size: 1.5em; margin-bottom: 100px;">
+        <div class="col-md-12">
+            <a href="https://16lemoing.github.io" style="margin-right: 20px;">Guillaume Le Moing</a>
+            <a href="https://www.di.ens.fr/~ponce" style="margin-right: 20px;">Jean Ponce</a>
+            <a href="https://thoth.inrialpes.fr/~schmid">Cordelia Schmid</a>
+        </div>
+    </div>
+
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <p style="text-align:center; font-size: 2em;margin-bottom: 20px;">arXiv 2022</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <img style='width: 70%; margin-left: auto; margin-right: auto; object-fit: contain; display: block;' src="../content/media/waldo/slider/slide1.JPG" id="framework" alt="framework">
+
+    <div style='width: 15%; float:left;'>
+        <div style="text-align:center">
+            <button type="button" class="btn btn-success btn-xs" onclick='buttonPlayPress()'>
+                <i class="fa fa-play" id="buttonPlay"></i>
+            </button>
+        </div>
+    </div>
+    <div class="slidecontainer" style='width: 70%; float:left; margin-top: 3px;'>
+        <input type="range" min="1" max="9" value="1" class="slider" id="frameworkRange">
+    </div>
+    <div style="clear: both;"></div>
+
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Abstract</h3>
+            <p style="text-align: justify;">
+                This paper presents WALDO (WArping Layer-Decomposed Objects), a novel approach to the prediction of future video frames from past ones.
+                Individual images are decomposed into multiple layers combining object masks and a small set of control points. The layer structure is shared
+                across all frames in each video to build dense inter-frame connections. Complex scene motions are modeled by combining parametric geometric
+                transformations associated with individual layers, and video synthesis is broken down into discovering the layers associated with past frames,
+                predicting the corresponding transformations for upcoming ones and warping the associated object regions accordingly, and filling in the
+                remaining image parts. Extensive experiments on the Cityscapes (resp. KITTI) dataset show that WALDO significantly outperforms prior works
+                with, e.g., 3, 27, and 51% (resp. 5, 20 and 11%) relative improvement in SSIM, LPIPS and FVD metrics. Code, pretrained models, and video
+                samples synthesized by our approach can be found in the project webpage.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Links</h3>
+            <div class="col-md-6">
+                <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;' src="../content/media/waldo/arxiv22_pdf.png"
+                     alt="pdf">
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">Coming soon</p>
+<!--                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://arxiv.org/abs/2107.08037">ArXiv preprint</a></p>-->
+            </div>
+            <div class="col-md-6">
+                <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;' src="../content/media/code.png" alt="code">
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">Coming soon</p>
+<!--                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://github.com/16lemoing/waldo">Code</a></p>-->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Citation</h3>
+            <pre><tt>@inproceedings{lemoing2022waldo,
+  title &nbsp&nbsp&nbsp&nbsp= {{WALDO}: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction},
+  author &nbsp&nbsp = {Guillaume Le Moing and Jean Ponce and Cordelia Schmid},
+  journal &nbsp = {arXiv preprint},
+  year &nbsp&nbsp&nbsp&nbsp&nbsp= {2022}
+}</tt></pre>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Results</h3>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#vis">
+                <h4 style="text-align:center">Visualization of modules</h4>
+            </button>
+
+            <div id="vis" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Layer video decomposition</h4>
+                    <p style="font-style: italic;">Layer masks and control points automatically extracted by WALDO from the videos</p>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/lvd.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Future layer prediction</h4>
+                    <p style="font-style: italic;">Motion vectors between predicted control points and past ones overlayed over the ground-truth video</p>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/flp.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Warping, fusion and inpainting</h4>
+                    <p style="font-style: italic;">Actual synthesis of future frames which consists in warping input ones and filling in the empty image parts</p>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/wfi.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">WALDO</h4>
+                    <p style="font-style: italic;">Combining all modules</p>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/waldo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#sota">
+                <h4 style="text-align:center">Comparison to the state of the art</h4>
+            </button>
+
+            <div id="sota" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Short-term prediction</h4>
+                    <p style="margin-bottom:0px;">Comparison to <a href="https://arxiv.org/abs/2004.00542">OMP</a> (CVPR'20), <a
+                            href="https://arxiv.org/abs/2104.09498">VPCL</a> (CVPR'22) and <a href="https://arxiv.org/abs/2206.13454">VPVFI</a> (CVPR'22)
+                    </p>
+                    <p style="font-style: italic;">10 futures frames predicted from 4 past ones</p>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/sota.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Long-term prediction</h4>
+                    <p style="margin-bottom:0px;">Comparison to <a href="https://arxiv.org/abs/2108.02760">SLAMP</a> (ICCV'21) </p>
+                    <p style="font-style: italic;">50 futures frames predicted from 4 past ones</p>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/long.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dom">
+                <h4 style="text-align:center">Generalization to new domains</h4>
+            </button>
+
+            <div id="dom" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Inference on DAVIS after training on Cityscapes</h4>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/davis.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" style="width: 100%; margin-bottom:20px" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#inp">
+                <h4 style="text-align:center">Inpainting strategy</h4>
+            </button>
+
+            <div id="inp" class="collapse">
+                <div class="content-box">
+                    <h4 style="margin-top:0px;">Ablation of our approach</h4>
+                    <div style='text-align:center;'>
+                        <video muted controls style='width: 80%;' autoplay loop playsinline>
+                            <source src="../content/media/waldo/mp4/inp.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr style="margin-top:10px;">
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Acknowledgments</h3>
+            <p style="text-align: justify;">
+                We would like to thank Daniel Geng and Xinzhu Bei for clarifications on the evaluation process, and we are grateful to Pauline Sert for helpful
+                feedback. This work was granted access to the HPC resources of IDRIS under the allocation 2021-AD011012227R1 made by GENCI. It was funded in
+                part by the French government under management of Agence Nationale de la Recherche as part of the ``Investissements d’avenir'' program,
+                reference ANR-19-P3IA-0001 (PRAIRIE 3IA Institute), and the ANR project VideoPredict, reference ANR-21-FAI1-0002-01. JP was supported in part
+                by the Louis Vuitton/ENS chair in artificial intelligence and the Inria/NYU collaboration.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Copyright Notice</h3>
+            <p style="text-align: justify;">
+                The documents contained in these directories are included by the contributing authors as a means to ensure timely dissemination of scholarly and
+                technical work on a non-commercial basis. Copyright and all rights therein are maintained by the authors or by other copyright holders,
+                notwithstanding that they have offered their works here electronically. It is understood that all persons copying this information will adhere
+                to the terms and constraints invoked by each author's copyright.
+            </p>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="container">
+        <footer>
+            <p align="right"><small>Copyright © Guillaume Le Moing</p>
+        </footer>
+        <div style="height:10px;"></div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jq/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/docs.min.js"></script>
+
+    <script>
+        var slider = document.getElementById("frameworkRange");
+
+        function updateSlide (value) {
+            document.getElementById("framework").setAttribute("src", "../content/media/waldo/slider/slide" + value + ".JPG");
+        }
+
+        slider.oninput = function () {
+            updateSlide(slider.value);
+        }
+    </script>
+
+    <script>
+        var state = 'pause';
+        var slider = document.getElementById("frameworkRange");
+        var buttonPlay = document.getElementById("buttonPlay");
+
+        function incrementRange() {
+           if (state == 'play') {
+               if (slider.value < 25) {
+                   slider.value++;
+                   updateSlide(slider.value);
+                   setTimeout('incrementRange()', 4000);
+               } else {
+                   slider.value = 1;
+                   state = 'pause';
+                   buttonPlay.setAttribute("class", "fa fa-play");
+                   updateSlide(slider.value);
+                   setTimeout('incrementRange()', 100);
+               }
+           } else {
+               setTimeout('incrementRange()', 100);
+           }
+        }
+
+        function buttonPlayPress() {
+            if (state == 'play') {
+                state = 'pause';
+                buttonPlay.setAttribute("class", "fa fa-play");
+            } else {
+                state = 'play';
+                buttonPlay.setAttribute("class", "fa fa-pause");
+            }
+        }
+        setTimeout('incrementRange()', 100);
+    </script>
+
+</div>
+
+
+</body>
+</html>
