@@ -81,14 +81,15 @@
         <div class="col-md-12">
             <h3>Abstract</h3>
             <p style="text-align: justify;">
-                This paper presents WALDO (WArping Layer-Decomposed Objects), a novel approach to the prediction of future video frames from past ones.
-                Individual images are decomposed into multiple layers combining object masks and a small set of control points. The layer structure is shared
-                across all frames in each video to build dense inter-frame connections. Complex scene motions are modeled by combining parametric geometric
-                transformations associated with individual layers, and video synthesis is broken down into discovering the layers associated with past frames,
-                predicting the corresponding transformations for upcoming ones and warping the associated object regions accordingly, and filling in the
-                remaining image parts. Extensive experiments on the Cityscapes (resp. KITTI) dataset show that WALDO significantly outperforms prior works
-                with, e.g., 3, 27, and 51% (resp. 5, 20 and 11%) relative improvement in SSIM, LPIPS and FVD metrics. Code, pretrained models, and video
-                samples synthesized by our approach can be found in the project webpage.
+                This paper presents WALDO (WArping Layer-Decomposed Objects), a novel approach to the prediction of future video frames from past
+                ones. Individual images are decomposed into multiple layers combining object masks and a small set of control points. The layer
+                structure is shared across all frames in each video to build dense inter-frame connections. Complex scene motions are modeled by
+                combining parametric geometric transformations associated with individual layers, and video synthesis is broken down into
+                discovering the layers associated with past frames, predicting the corresponding transformations for upcoming ones and warping the
+                associated object regions accordingly, and filling in the remaining image parts. Extensive experiments on multiple benchmarks
+                including urban videos (Cityscapes and KITTI) and videos featuring nonrigid motions (UCF-Sports and H3.6M), show that our method
+                consistently outperforms the state of the art by a significant margin in every case. Code, pretrained models, and video samples
+                synthesized by our approach can be found in the project webpage.
             </p>
         </div>
     </div>
@@ -105,7 +106,7 @@
             </div>
             <div class="col-md-6">
                 <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;' src="../content/media/code.png" alt="code">
-                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">Coming soon</p>
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://github.com/16lemoing/waldo">Code</a></p>
 <!--                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://github.com/16lemoing/waldo">Code</a></p>-->
             </div>
         </div>
@@ -119,8 +120,8 @@
             <pre><tt>@inproceedings{lemoing2022waldo,
   title &nbsp&nbsp&nbsp&nbsp= {{WALDO}: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction},
   author &nbsp&nbsp = {Guillaume Le Moing and Jean Ponce and Cordelia Schmid},
-  journal &nbsp = {arXiv preprint},
-  year &nbsp&nbsp&nbsp&nbsp&nbsp= {2022}
+  booktitle = {ICCV},
+  year &nbsp&nbsp&nbsp&nbsp&nbsp= {2023}
 }</tt></pre>
         </div>
     </div>
