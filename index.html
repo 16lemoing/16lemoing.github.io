@@ -79,14 +79,14 @@
                    title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a>
             </h5>
             <p align="justify">
-                I am a third-year PhD student in computer vision at <a href="https://www.di.ens.fr/willow">WILLOW</a>, a joint
+                I am a 4th-year PhD student in computer vision at <a href="https://www.di.ens.fr/willow">WILLOW</a>, a joint
                 research
-                laboratory between the <a href="https://www.di.ens.fr">Department of Computer Science</a> of <a
-                    href="https://www.ens.fr">&Eacute;cole Normale Sup&eacute;rieure (ENS)</a> and <a
-                    href="https://www.inria.fr/">Inria Paris</a>, working under the supervision of <a
+                lab between the <a href="https://www.di.ens.fr">Department of Computer Science</a> of <a
+                    href="https://www.ens.fr">&Eacute;cole normale sup&eacute;rieure (ENS)</a> and <a
+                    href="https://www.inria.fr/">Inria Paris</a>, collaborating with <a
                     href="https://www.di.ens.fr/willow/people_webpages/cordelia/">Cordelia Schmid</a> and <a
-                    href="https://www.di.ens.fr/~ponce/enindex.html">Jean Ponce</a>. I am interested in computer vision, deep learning and generative
-                modeling. I have been working on controllable image and video synthesis, with downstream prediction tasks like
+                    href="https://www.di.ens.fr/~ponce/enindex.html">Jean Ponce</a>. I am interested in computer vision, deep learning with topics around generative
+                modeling and motion understanding. I have been working on controllable image and video synthesis, with downstream tasks like
                 anticipating the future, and creative applications like content editing. I have received a MSc degree in <a
                     href="https://mines-paristech.eu/Academics/Master-degree/Master-s-degree-in-science-executive-engineering/Presentation/">Executive
                 Engineering</a> from <a href="https://www.minesparis.psl.eu/">&Eacute;cole des Mines de Paris</a> and a MSc degree in <a
@@ -108,26 +108,29 @@
 
     <!-- arXiv 2022 -->
 
-<!--    <div class="row">-->
-<!--        <div class="col-sm-1 col-md-1">-->
-<!--            <span class="label label-2022">11 / 2022</span>-->
-<!--        </div>-->
-<!--        <div class="col-sm-11 col-md-11">-->
-<!--            Our paper <a href="">WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction</a> is now on arXiv!-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-sm-1 col-md-1">-->
+    <!--            <span class="label label-2022">11 / 2022</span>-->
+    <!--        </div>-->
+    <!--        <div class="col-sm-11 col-md-11">-->
+    <!--            Our paper <a href="">WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction</a> is now on arXiv!-->
+    <!--        </div>-->
+    <!--    </div>-->
 
-    <!-- NeurIPS 2021 -->
+    <!-- ICCV 2023 -->
 
     <div class="row">
         <div class="col-sm-1 col-md-1">
             <span class="label label-2023">07 / 2023</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            Our paper <a href="https://arxiv.org/abs/2211.14308">WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction</a> has been accepted to <a
+            Our paper <a href="https://arxiv.org/abs/2211.14308">WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow
+            Prediction</a> has been accepted to <a
                 href="https://iccv2023.thecvf.com/">ICCV'23</a>!
         </div>
     </div>
+
+    <!-- NeurIPS 2021 -->
 
     <div class="row">
         <div class="col-sm-1 col-md-1">
@@ -181,7 +184,8 @@
             <span class="label label-2020">05 / 2020</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            I started a 6-month internship at <a href="https://www.valeo.com/en/valeo-ai/">valeo.ai</a> working with <a href="https://tuanhungvu.github.io/">Tuan-Hung Vu</a>, <a
+            I started a 6-month internship at <a href="https://www.valeo.com/en/valeo-ai/">valeo.ai</a> working with <a href="https://tuanhungvu.github.io/">Tuan-Hung
+            Vu</a>, <a
                 href="https://himalayajain.github.io/">Himalaya Jain</a>, <a href="https://webia.lip6.fr/~cord/">Matthieu
             Cord</a> and <a href="https://ptrckprz.github.io/">Patrick Perez</a>.
         </div>
@@ -207,24 +211,97 @@
         <div class="col-md-12">
             <h2>Research</h2>
 
+            <!-- arXiv'23 -->
+            <div class="row">
+                <div onmouseout="arxiv23_stop()" onmouseover="arxiv23_start()">
+                    <div class="col-xs-6 col-sm-4 col-md-2">
+                        <div class="one">
+                            <div class="two" id='arxiv23_image'>
+                                <video width=100% height=100% muted autoplay loop class="img-rounded">
+                                    <source src="./content/arxiv23_after.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <img src='./content/arxiv23_before.png' width="160" class="img-rounded">
+                        </div>
+                        <script type="text/javascript">
+                            function arxiv23_start() {
+                                document.getElementById('arxiv23_image').style.opacity = "1";
+                            }
+
+                            function arxiv23_stop() {
+                                document.getElementById('arxiv23_image').style.opacity = "0";
+                            }
+
+                            arxiv23_stop()
+                        </script>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-8 col-md-10">
+                    <strong>Dense Optical Tracking: Connecting the Dots</strong> </br>
+                    <u>Guillaume Le Moing</u>, Jean Ponce, Cordelia Schmid<br>
+                    <em>arXiv, </em> 2023.<br>
+                    <a href="https://arxiv.org/abs/">
+                        <button type="button" class="btn btn-primary btn-xs">pdf</button>
+                    </a>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex4">
+                        bibtex
+                    </button>
+                    <div id="bibtex4" class="collapse">
+	  <pre><tt>@article{lemoing2023dense,
+  title &nbsp&nbsp= {Dense Optical Tracking: Connecting the Dots},
+  author  = {Guillaume Le Moing and Jean Ponce and Cordelia Schmid},
+  journal = {arXiv preprint},
+  year &nbsp&nbsp&nbsp= {2023}
+}</tt></pre>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse"
+                            data-target="#abstract4">abstract
+                    </button>
+                    <div id="abstract4" class="collapse">
+                        <p style="text-align: justify;">
+                            Recent approaches to point tracking are able to recover the trajectory of any scene point through a large portion of a video despite
+                            the presence of occlusions. They are, however, too slow in practice to track every point observed in a single frame in a reasonable
+                            amount of time. This paper introduces DOT, a novel, simple and efficient method for solving this problem. It first extracts a
+                            small set of tracks from key regions at motion boundaries using an off-the-shelf point tracking algorithm. Given source and target
+                            frames, DOT then computes rough initial estimates of a dense flow field and visibility mask through nearest-neighbor interpolation,
+                            before refining them using a learnable optical flow estimator that explicitly handles occlusions and can be trained on synthetic
+                            data with ground-truth correspondences. We show that DOT is significantly more accurate than current optical flow techniques,
+                            outperforms sophisticated "universal" trackers like OmniMotion, and is on par with, or better than, the best point tracking
+                            algorithms like CoTracker while being at least two orders of magnitude faster. Quantitative and qualitative experiments with
+                            synthetic and real videos validate the promise of the proposed approach. Code, data, and videos showcasing the capabilities of our
+                            approach are available in the project webpage.
+                        </p>
+                    </div>
+                    <a href="dot">
+                        <button type="button" class="btn btn-primary btn-xs">project page</button>
+                    </a>
+                </div>
+            </div>
+            <!-- end of arXiv'23 -->
+
             <!-- arXiv'22 -->
             <div class="row">
                 <div onmouseout="arxiv22_stop()" onmouseover="arxiv22_start()">
                     <div class="col-xs-6 col-sm-4 col-md-2">
                         <div class="one">
-                            <div class="two" id='arxiv22_image'><video width=100% height=100% muted autoplay loop class="img-rounded">
-                            <source src="./content/arxiv22_after.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video></div>
+                            <div class="two" id='arxiv22_image'>
+                                <video width=100% height=100% muted autoplay loop class="img-rounded">
+                                    <source src="./content/arxiv22_after.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                             <img src='./content/arxiv22_before.png' width="160" class="img-rounded">
                         </div>
                         <script type="text/javascript">
                             function arxiv22_start() {
                                 document.getElementById('arxiv22_image').style.opacity = "1";
                             }
+
                             function arxiv22_stop() {
                                 document.getElementById('arxiv22_image').style.opacity = "0";
                             }
+
                             arxiv22_stop()
                         </script>
                     </div>
@@ -233,7 +310,9 @@
                     <strong>WALDO: Future Video Synthesis using Object Layer Decomposition and Parametric Flow Prediction</strong> </br>
                     <u>Guillaume Le Moing</u>, Jean Ponce, Cordelia Schmid<br>
                     <em>ICCV, </em> 2023.<br>
-                    <a href="https://arxiv.org/abs/2211.14308"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
+                    <a href="https://arxiv.org/abs/2211.14308">
+                        <button type="button" class="btn btn-primary btn-xs">pdf</button>
+                    </a>
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex4">
                         bibtex
                     </button>
@@ -261,7 +340,9 @@
                             synthesized by our approach can be found in the project webpage.
                         </p>
                     </div>
-                    <a href="waldo"><button type="button" class="btn btn-primary btn-xs">project page</button></a>
+                    <a href="waldo">
+                        <button type="button" class="btn btn-primary btn-xs">project page</button>
+                    </a>
                 </div>
             </div>
             <!-- end of arXiv'22 -->
@@ -271,19 +352,23 @@
                 <div onmouseout="neurips21_stop()" onmouseover="neurips21_start()">
                     <div class="col-xs-6 col-sm-4 col-md-2">
                         <div class="one">
-                            <div class="two" id='neurips21_image'><video  width=100% height=100% muted autoplay loop class="img-rounded">
-                            <source src="./content/neurips21_after.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video></div>
+                            <div class="two" id='neurips21_image'>
+                                <video width=100% height=100% muted autoplay loop class="img-rounded">
+                                    <source src="./content/neurips21_after.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                             <img src='./content/neurips21_before.png' width="160" class="img-rounded">
                         </div>
                         <script type="text/javascript">
                             function neurips21_start() {
                                 document.getElementById('neurips21_image').style.opacity = "1";
                             }
+
                             function neurips21_stop() {
                                 document.getElementById('neurips21_image').style.opacity = "0";
                             }
+
                             neurips21_stop()
                         </script>
                     </div>
@@ -292,7 +377,9 @@
                     <strong>CCVS: Context-aware Controllable Video Synthesis</strong> </br>
                     <u>Guillaume Le Moing</u>, Jean Ponce, Cordelia Schmid<br>
                     <em>NeurIPS, </em> 2021.<br>
-                    <a href="https://arxiv.org/abs/2107.08037"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
+                    <a href="https://arxiv.org/abs/2107.08037">
+                        <button type="button" class="btn btn-primary btn-xs">pdf</button>
+                    </a>
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex3">
                         bibtex
                     </button>
@@ -317,12 +404,15 @@
                             is used to further improve the realism of its output. A quantizer inserted between the encoder and the transformer in charge of
                             forecasting future frames in latent space (and its inverse inserted between the transformer and the decoder) adds even more
                             flexibility by affording simple mechanisms for handling multimodal ancillary information for controlling the synthesis process
-                            (e.g., a few sample frames, an audio track, a trajectory in image space) and taking into account the intrinsically uncertain nature of
+                            (e.g., a few sample frames, an audio track, a trajectory in image space) and taking into account the intrinsically uncertain nature
+                            of
                             the future by allowing multiple predictions. Experiments with an implementation of the proposed approach give very good qualitative
                             and quantitative results on multiple tasks and standard benchmarks.
                         </p>
                     </div>
-                    <a href="ccvs"><button type="button" class="btn btn-primary btn-xs">project page</button></a>
+                    <a href="ccvs">
+                        <button type="button" class="btn btn-primary btn-xs">project page</button>
+                    </a>
                 </div>
             </div>
             <!-- end of arXiv'21 -->
@@ -333,19 +423,23 @@
                 <div onmouseout="cvpr21_stop()" onmouseover="cvpr21_start()">
                     <div class="col-xs-6 col-sm-4 col-md-2">
                         <div class="one">
-                            <div class="two" id='cvpr21_image'><video  width=100% height=100% muted autoplay loop class="img-rounded">
-                            <source src="./content/cvpr21_after.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video></div>
+                            <div class="two" id='cvpr21_image'>
+                                <video width=100% height=100% muted autoplay loop class="img-rounded">
+                                    <source src="./content/cvpr21_after.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                             <img src='./content/cvpr21_before.png' width="160" class="img-rounded">
                         </div>
                         <script type="text/javascript">
                             function cvpr21_start() {
                                 document.getElementById('cvpr21_image').style.opacity = "1";
                             }
+
                             function cvpr21_stop() {
                                 document.getElementById('cvpr21_image').style.opacity = "0";
                             }
+
                             cvpr21_stop()
                         </script>
                     </div>
@@ -354,7 +448,9 @@
                     <strong>Semantic Palette: Guiding Scene Generation with Class Proportions</strong> </br>
                     <u>Guillaume Le Moing</u>, Tuan-Hung Vu, Himalaya Jain, Patrick Pérez, Matthieu Cord<br>
                     <em>CVPR, </em> 2021.<br>
-                    <a href="https://arxiv.org/abs/2106.01629"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
+                    <a href="https://arxiv.org/abs/2106.01629">
+                        <button type="button" class="btn btn-primary btn-xs">pdf</button>
+                    </a>
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex2">
                         bibtex
                     </button>
@@ -383,9 +479,15 @@
                             additional ones generated by our approach outperform models only trained on real pairs.
                         </p>
                     </div>
-                    <a href="https://valeoai.github.io/blog/publications/semanticpalette"><button type="button" class="btn btn-primary btn-xs">project page</button></a>
-                    <a href="https://www.youtube.com/watch?v=ejkbaJD4Emk"><button type="button" class="btn btn-primary btn-xs">video</button></a>
-                    <a href="content/cvpr21_poster.pdf"><button type="button" class="btn btn-primary btn-xs">poster</button></a>
+                    <a href="https://valeoai.github.io/blog/publications/semanticpalette">
+                        <button type="button" class="btn btn-primary btn-xs">project page</button>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=ejkbaJD4Emk">
+                        <button type="button" class="btn btn-primary btn-xs">video</button>
+                    </a>
+                    <a href="content/cvpr21_poster.pdf">
+                        <button type="button" class="btn btn-primary btn-xs">poster</button>
+                    </a>
                 </div>
             </div>
             <!-- end of CVPR'21 -->
@@ -405,9 +507,11 @@
                             function icassp21_start() {
                                 document.getElementById('icassp21_image').style.opacity = "1";
                             }
+
                             function icassp21_stop() {
                                 document.getElementById('icassp21_image').style.opacity = "0";
                             }
+
                             icassp21_stop()
                         </script>
                     </div>
@@ -417,7 +521,9 @@
                     <u>Guillaume Le Moing</u>, Phongtharin Vinayavekhin, Don Joven Agravante, Tadanobu Inoue, Jayakorn
                     Vongkulbhisal, Asim Munawar, Ryuki Tachibana<br>
                     <em>ICASSP, </em> 2021.<br>
-                    <a href="https://arxiv.org/abs/2012.05533"><button type="button" class="btn btn-primary btn-xs">pdf</button></a>
+                    <a href="https://arxiv.org/abs/2012.05533">
+                        <button type="button" class="btn btn-primary btn-xs">pdf</button>
+                    </a>
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#bibtex1">
                         bibtex
                     </button>
@@ -448,8 +554,12 @@
                             microphone array layouts while generalizing well to unseen layouts during inference.
                         </div>
                     </div>
-                    <a href="https://www.youtube.com/watch?v=TYntjL-pwSU"><button type="button" class="btn btn-primary btn-xs">video</button></a>
-                    <a href="content/icassp21_poster.pdf"><button type="button" class="btn btn-primary btn-xs">poster</button></a>
+                    <a href="https://www.youtube.com/watch?v=TYntjL-pwSU">
+                        <button type="button" class="btn btn-primary btn-xs">video</button>
+                    </a>
+                    <a href="content/icassp21_poster.pdf">
+                        <button type="button" class="btn btn-primary btn-xs">poster</button>
+                    </a>
                 </div>
             </div>
             <!-- end of ICASSP'21 -->
@@ -475,7 +585,8 @@
             <span class="label label-2023">Fall 2023</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            Teaching Assistant - Object Recognition and Computer Vision - MVA Master - <a href="https://www.universite-paris-saclay.fr/en">ENS Paris-Saclay</a> (50 hours)
+            Teaching Assistant - Object Recognition and Computer Vision - MVA Master - <a href="https://www.universite-paris-saclay.fr/en">ENS Paris-Saclay</a>
+            (50 hours)
         </div>
     </div>
 
@@ -486,7 +597,8 @@
             <span class="label label-2022">Fall 2022</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            Teaching Assistant - Object Recognition and Computer Vision - MVA Master - <a href="https://www.universite-paris-saclay.fr/en">ENS Paris-Saclay</a> (50 hours)
+            Teaching Assistant - Object Recognition and Computer Vision - MVA Master - <a href="https://www.universite-paris-saclay.fr/en">ENS Paris-Saclay</a>
+            (50 hours)
         </div>
     </div>
 
@@ -497,7 +609,8 @@
             <span class="label label-2021">Fall 2021</span>
         </div>
         <div class="col-sm-11 col-md-11">
-            Project Advisor - Object Recognition and Computer Vision - MVA Master - <a href="https://www.universite-paris-saclay.fr/en">ENS Paris-Saclay</a> (volunteering)
+            Project Advisor - Object Recognition and Computer Vision - MVA Master - <a href="https://www.universite-paris-saclay.fr/en">ENS Paris-Saclay</a>
+            (volunteering)
         </div>
     </div>
 
@@ -506,7 +619,7 @@
 
     <div class="container">
         <footer>
-            <p align="right"><small>Copyright © Guillaume Le Moing &nbsp;/&nbsp; Last update: August 2023</small></p>
+            <p align="right"><small>Copyright © Guillaume Le Moing &nbsp;/&nbsp; Last update: December 2023</small></p>
         </footer>
         <div style="height:10px;"></div>
     </div>
@@ -555,9 +668,8 @@
             return true;
         }
 
-        function showFace()
-        {
-            if(isImageOk(document.getElementById("open"))) {
+        function showFace() {
+            if (isImageOk(document.getElementById("open"))) {
                 $("#face").css({
                     opacity: 1
                 });
@@ -565,21 +677,22 @@
                 setTimeout('showFace()', 100);
             }
         }
+
         setTimeout('showFace()', 100);
     </script>
 
     <script>
-        $(document).on("mousedown mouseup focus blur change dblclick mousemove mouseover mouseout mousewheel touchstart touchmove touchend touchcancel resize scroll zoom select change submit reset", function(e) {
+        $(document).on("mousedown mouseup focus blur change dblclick mousemove mouseover mouseout mousewheel touchstart touchmove touchend touchcancel resize scroll zoom select change submit reset", function (e) {
             var pageX, pageY;
             var face = document.querySelector("#face").getBoundingClientRect();
             var follow = document.querySelector("#follow").getBoundingClientRect();
             var center_x = face.left + (0.5 + 0.14) * face.width;
             var center_y = face.top + (0.5 - 0.04) * face.height;
-            if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+            if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
                 var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
                 pageX = touch.pageX;
                 pageY = touch.pageY;
-            } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+            } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover' || e.type == 'mouseout' || e.type == 'mouseenter' || e.type == 'mouseleave') {
                 pageX = e.pageX;
                 pageY = e.pageY;
             } else {
@@ -596,8 +709,8 @@
             var dy = y - (follow.top - face.top);
             var n = Math.sqrt(dx ** 2 + dy ** 2);
             var m = 1 + 64 * n / face.width
-            setTimeout(function(){
-                if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
+            setTimeout(function () {
+                if ($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
                     $("#follow").css({
                         left: (follow.left - face.left) + dx / m,
                         top: (follow.top - face.top) + dy / m
@@ -613,27 +726,25 @@
     </script>
 
     <script>
-        function blinkImg()
-        {
+        function blinkImg() {
             var t;
             var v, ele = document.getElementById("overlay-close");
-            if($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
+            if ($(document.getElementById("face")).is(':hover') || $(document.getElementById("face")).is(':active') || $(document.getElementById("face")).is(':focus')) {
                 if (ele.style.visibility == 'visible') {
                     v = 'hidden';
                     t = 3000;
-                }
-                else {
+                } else {
                     v = 'visible';
                     t = 100;
                 }
-            }
-            else {
+            } else {
                 v = 'hidden';
                 t = 3000;
             }
             ele.style.visibility = v;
             setTimeout('blinkImg()', t);
         }
+
         setTimeout('blinkImg()', 3000);
     </script>
 </div>

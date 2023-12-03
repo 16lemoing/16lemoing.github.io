@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dense Optical Tracking: Connecting the Dots">
+    <meta name="author" content="WILLOW team">
+    <title>Dense Optical Tracking: Connecting the Dots</title>
+
+    <link rel='icon' href='../favicon.ico' type='image/x-icon'>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css"/>
+</head>
+
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar navbar-default  navbar-fixed-top bg-info">
+    <div class="container">
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="../">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="height:80px;"></div>
+<div style="height:40px;"></div>
+
+<!-- CONTENTS -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1><p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;">Dense Optical Tracking: Connecting the Dots</p></h1>
+            <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;'
+                     src="../content/media/dot/dots.png"
+                     alt="pdf">
+        </div>
+    </div>
+
+    <div class="text-center" style="font-size: 1.5em; margin-bottom: 80px;">
+        <div class="col-md-12">
+            <a href="https://16lemoing.github.io">Guillaume Le Moing</a>
+            <a href="https://www.di.ens.fr/~ponce" style="margin-left: 20px;">Jean Ponce</a>
+            <a href="https://thoth.inrialpes.fr/~schmid" style="margin-left: 20px;">Cordelia Schmid</a>
+        </div>
+    </div>
+
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-12">-->
+    <!--            <p style="text-align:center; font-size: 2em;margin-bottom: 20px;">arXiv 2022</p>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Abstract</h3>
+            <p style="text-align: justify;">
+                Recent approaches to point tracking are able to recover the trajectory of any scene point through a large portion of a video despite
+                the presence of occlusions. They are, however, too slow in practice to track every point observed in a single frame in a reasonable
+                amount of time. This paper introduces DOT, a novel, simple and efficient method for solving this problem. It first extracts a
+                small set of tracks from key regions at motion boundaries using an off-the-shelf point tracking algorithm. Given source and target
+                frames, DOT then computes rough initial estimates of a dense flow field and visibility mask through nearest-neighbor interpolation,
+                before refining them using a learnable optical flow estimator that explicitly handles occlusions and can be trained on synthetic
+                data with ground-truth correspondences. We show that DOT is significantly more accurate than current optical flow techniques,
+                outperforms sophisticated "universal" trackers like OmniMotion, and is on par with, or better than, the best point tracking
+                algorithms like CoTracker while being at least two orders of magnitude faster. Quantitative and qualitative experiments with
+                synthetic and real videos validate the promise of the proposed approach. Code, data, and videos showcasing the capabilities of our
+                approach are available in the project webpage.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Links</h3>
+            <div class="col-md-6">
+                <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;'
+                     src="../content/media/dot/arxiv23_pdf.png"
+                     alt="pdf">
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://arxiv.org/abs/">ArXiv preprint</a></p>
+            </div>
+            <div class="col-md-6">
+                <img style='width: 30%; object-fit: contain; display: block; margin-left: auto; margin-right: auto;' src="../content/media/code.png" alt="code">
+                <p style="text-align:center; font-size: 1.2em; margin-bottom: 10px;"><a href="https://github.com/16lemoing/dot">Code</a></p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Video</h3>
+            <vid>
+<!--                <iframe width="858" height="480" src="https://www.youtube.com/embed/H0Rvq0OL87Y" allowfullscreen></iframe>-->
+                <iframe width="800" height="450" src="https://www.youtube.com/embed/H0Rvq0OL87Y?si=UblT5-CcO77PWSj6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </vid>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Citation</h3>
+            <pre><tt>@article{lemoing2023dense,
+  title &nbsp&nbsp= {Dense Optical Tracking: Connecting the Dots},
+  author  = {Guillaume Le Moing and Jean Ponce and Cordelia Schmid},
+  journal = {arXiv preprint},
+  year &nbsp&nbsp&nbsp= {2023}
+}</tt></pre>
+        </div>
+    </div>
+
+    <hr>
+
+    <hr style="margin-top:10px;">
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Acknowledgments</h3>
+            <p style="text-align: justify;">
+                This work was granted access to the HPC resources of IDRIS under the allocation 2021-AD011012227R2 made by GENCI. It was funded in part by the
+                French government under management of Agence Nationale de la Recherche as part of the ``Investissements d’avenir'' program, reference
+                ANR-19-P3IA-0001 (PRAIRIE 3IA Institute), and the ANR project VideoPredict, reference ANR-21-FAI1-0002-01.
+                JP was supported in part by the Louis Vuitton/ENS chair in artificial intelligence and a Global Distinguished Professorship at the Courant
+                Institute of Mathematical Sciences and the Center for Data Science at New York University.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" style="padding-top:60px; margin-top:-60px;">
+        <div class="col-md-12">
+            <h3>Copyright Notice</h3>
+            <p style="text-align: justify;">
+                The documents contained in these directories are included by the contributing authors as a means to ensure timely dissemination of scholarly and
+                technical work on a non-commercial basis. Copyright and all rights therein are maintained by the authors or by other copyright holders,
+                notwithstanding that they have offered their works here electronically. It is understood that all persons copying this information will adhere
+                to the terms and constraints invoked by each author's copyright.
+            </p>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="container">
+        <footer>
+            <p align="right"><small>Copyright © Guillaume Le Moing</p>
+        </footer>
+        <div style="height:10px;"></div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../jq/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/docs.min.js"></script>
+
+</div>
+
+
+</body>
+</html>
